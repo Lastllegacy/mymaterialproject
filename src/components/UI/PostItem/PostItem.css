@@ -1,0 +1,16 @@
+.post {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 15px;
+   border: 2px solid orange;
+   border-radius: 3px;
+ }
+ 
+ .post__content {
+   display: flex;
+   flex-direction: column;
+   padding: 10px 15px;
+   justify-content: space-between;
+ }
+ 
