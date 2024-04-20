@@ -1,10 +1,10 @@
 import React from "react";
 import PostItem from "../PostItem/PostItem";
 
-function PostList({posts}) {
+function PostList({posts, deletePost}) {
   return (
    <div className="post-list">
-      {posts.map((post) => <PostItem key={post.id} post={post} />)}
+      {posts.map((post) => <PostItem deletePost={deletePost} key={post.id} post={post} />)}
    </div>
   )
 

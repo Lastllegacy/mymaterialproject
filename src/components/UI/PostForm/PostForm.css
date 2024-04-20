@@ -1,0 +1,17 @@
+.post-form {
+   margin: 15px;
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   background-color: rgba(78, 72, 74, 0.144);
+   border-radius: 5px;
+   box-shadow: 5px 15px 15px rgba(0, 0, 0, 0.242);
+ }
+ 
+ .post-add-header {
+   font-size: 24px;
+   text-align: center;
+   padding: 5px;
+   color: rgba(227, 126, 11, 0.909);
+ }
+ 

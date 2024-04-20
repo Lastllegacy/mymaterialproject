@@ -2,7 +2,7 @@ import React from "react";
 import MyButton from "../MyButton/MyButton";
 import './PostItem.css'
 
-function PostItem({post}) {
+function PostItem({post, deletePost}) {
    const {title, body, id} = post;
   return (
          <div className="post">
@@ -15,7 +15,7 @@ function PostItem({post}) {
 					</div>
 				</div>
 				<div className="post__content">
-					<MyButton> Удалить </MyButton>
+					<MyButton onClick={() => deletePost(id)} className="my-button delete"> Удалить </MyButton>
 				</div>
 			</div>
   )

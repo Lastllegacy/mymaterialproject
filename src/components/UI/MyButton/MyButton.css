@@ -1,12 +1,19 @@
 .my-button {
    padding: 10px;
-   margin: 5px;
    background: white;
-   border: 1.5px solid rgb(224, 92, 3);
    border-radius: 5px;
    cursor: pointer;
  }
- 
+
+ .my-button.delete {
+  border: 1.5px solid rgb(224, 92, 3);
+ }
+
+ .my-button.add {
+  border: 1.5px solid rgba(32, 199, 46, 0.559);
+  text-align: center;
+ }
+
  .my-button:hover {
    background-color: rgba(128, 128, 128, 0.193);
  }
