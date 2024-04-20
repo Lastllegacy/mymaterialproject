@@ -1,5 +1,5 @@
 import React from "react";
-import MyButton from "../MyButton/MyButton";
+import MyButton from "../Button/MyButton";
 import './PostItem.css'
 
 function PostItem({post, deletePost}) {

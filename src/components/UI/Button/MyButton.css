@@ -9,6 +9,10 @@
   border: 1.5px solid rgb(224, 92, 3);
  }
 
+ .my-button.delete:hover {
+  background-color: rgba(242, 59, 9, 0.272);
+ }
+
  .my-button.add {
   border: 1.5px solid rgba(32, 199, 46, 0.559);
   text-align: center;
@@ -25,7 +29,6 @@
   width: 175px;
   text-align: center;
   padding: 10px;
-  margin: 15px;
   border: 2px solid rgba(112, 128, 144, 0.329);
   box-shadow: 5px 5px 5px rgba(112, 128, 144, 0.329);
  }
