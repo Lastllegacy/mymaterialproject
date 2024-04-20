@@ -11,6 +11,11 @@ function PostForm({addPost}) {
 		id: "",
 	})
 
+   const createPost = () => {
+      addPost(newPost);
+      setNewPost({title: "", body: "", id: ""});
+   }
+
 
   return (
    <div className="post-form" >
@@ -27,7 +32,7 @@ function PostForm({addPost}) {
          value={newPost.body} 
          onChange={(e) => setNewPost({...newPost, body: e.target.value})} 
       /> 
-		<MyButton className="my-button add" onClick={() => {addPost(newPost); setNewPost({title: "", body: "", id: ""})}} > Добавить пост </MyButton>
+		<MyButton className="my-button add" onClick={createPost} > Добавить пост </MyButton>
 	</div>
   )
 }
