@@ -13,17 +13,33 @@ function App() {
 	const [postsLoading, setPostsLoading] = useState(true);
 	const [isModal, setIsModal] = useState(false);
    const [filter, setFilter] = useState({sortOption: "" , query: ""});
-	const sortAndSearchPosts = useSortAndSearchPosts(posts, filter.sortOption, filter.query)
-	const [error, setError] = useState('')
+	const sortAndSearchPosts = useSortAndSearchPosts(posts, filter.sortOption, filter.query);
+	const [error, setError] = useState('');
+	const [totalCount, setTotalCount] = useState(0);
+	const [page, setPage] = useState(1);
+	const [limit, setLimit] = useState(10);
+	const [arrayPages, setArrayPages] = useState([]);
 
+	const setPagination = () => {
+		const arrayPagesHelper = [];
+		for(let i=0; i< totalCount / limit; i++) {
+			arrayPagesHelper.push(i)
+		}
+		setArrayPages(arrayPagesHelper)
+	}
+ 
 	const fetchPosts = async () => {
 		try {
 			setPostsLoading(true)
 			const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
 				params: {
-					_limit: 10
+					_limit: limit,
+					_page: page,
 				}
 			})
+			console.log(response.headers['x-total-count']);
+			setTotalCount(response.headers['x-total-count'])
+			setPagination();
 			setPosts(response.data)
 		} catch(e) {
 			setError(e.message)
@@ -49,20 +65,23 @@ function App() {
 
 	useEffect(() => {
 		fetchPosts()
-	}, []);
+	}, [limit, page]);
 
   return (
 	<div className="App">
-	{isModal ? <MyModal closeModal={closeModal} addPost={addPost} /> : ""}
-	<MyButton 
-		onClick={() => setIsModal(true)} 
-		className="modal-open"
-	> Добавить пост </MyButton>
-	<hr style={{marginTop:15}} />
-	<PostFilter filter={filter} setFilter={setFilter} />
-	{postsLoading ? <h2> Please, wait for posts to load...</h2> : <PostList deletePost={deletePost} posts={sortAndSearchPosts} /> }
-	{error ? <h2> {error}</h2> : "" }
-	
+		{isModal ? <MyModal closeModal={closeModal} addPost={addPost} /> : ""}
+		<MyButton 
+			onClick={() => setIsModal(true)} 
+			className="modal-open"
+		> Добавить пост 
+		</MyButton>
+		<hr style={{marginTop:15}} />
+		<PostFilter filter={filter} setFilter={setFilter} />
+		{postsLoading ? <h2> Please, wait for posts to load...</h2> : <PostList deletePost={deletePost} posts={sortAndSearchPosts} /> }
+		{error ? <h2> {error}</h2> : "" }
+		<div className="pagination">
+			{arrayPages.map( (page,index) => <MyButton> {index+1} </MyButton>)}
+		</div>
 	</div>
 )
 }
