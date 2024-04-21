@@ -1,5 +1,7 @@
 .post {
    display: flex;
+   padding: 10px 15px;
+   gap: 15px;
    justify-content: space-between;
    align-items: center;
    margin-top: 10px;
@@ -10,7 +12,11 @@
  .post__content {
    display: flex;
    flex-direction: column;
-   padding: 10px 15px;
    justify-content: space-between;
+ }
+
+ .post__content.btns {
+  flex-direction: row;
+  gap: 0 10px;
  }
  

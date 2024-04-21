@@ -18,6 +18,10 @@
   text-align: center;
  }
 
+ .my-button.add:hover {
+  background-color: rgba(32, 199, 46, 0.286);
+ }
+
  .my-button:hover {
    background-color: rgba(128, 128, 128, 0.193);
  }

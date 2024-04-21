@@ -14,28 +14,7 @@
   padding: 15px;
 }
 
-.input-query {
-  padding: 15px;
-  font-size: 20px;
-}
 
-.post-item-enter {
-  opacity: 0;
-  margin-left: -50px;
-}
-.post-item-enter-active {
-  opacity: 1;
-  margin-left: 0px;
-  transition: all 500ms ease-in-out;
-}
-.post-item-exit {
-  opacity: 1;
-}
-.post-item-exit-active {
-  opacity: 0;
-  margin-left: 50px;
-  transition: all 200ms ease-in-out;
-}
 
 
 

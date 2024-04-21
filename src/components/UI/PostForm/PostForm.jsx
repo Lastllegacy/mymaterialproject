@@ -8,7 +8,7 @@ function PostForm({addPost}) {
    const [newPost, setNewPost] = useState({
 		title: "",
 		body: "",
-		id: "",
+		id: Date.now(),
 	})
 
    const createPost = () => {
