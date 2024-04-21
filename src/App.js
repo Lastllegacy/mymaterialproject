@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import PostList from "./components/UI/PostList/PostList";
@@ -6,6 +6,8 @@ import MyButton from "./components/UI/Button/MyButton";
 import MyModal from "./components/UI/Modal/MyModal";
 import { useSortAndSearchPosts } from "./components/MyHooks/usePosts";
 import PostFilter from "./components/UI/PostFilter/PostFilter";
+import Pagination from "./components/UI/Pagination/Pagination";
+import Loader from "./components/UI/Loader/Loader";
 
 function App() {
 
@@ -18,17 +20,16 @@ function App() {
 	const [totalCount, setTotalCount] = useState(0);
 	const [page, setPage] = useState(1);
 	const [limit, setLimit] = useState(10);
-	const [arrayPages, setArrayPages] = useState([]);
 
-	const setPagination = () => {
+	const getPagesArray = (totalCount) => {
 		const arrayPagesHelper = [];
 		for(let i=0; i< totalCount / limit; i++) {
 			arrayPagesHelper.push(i)
 		}
-		setArrayPages(arrayPagesHelper)
+		return arrayPagesHelper
 	}
  
-	const fetchPosts = async () => {
+	const fetchPosts = async (limit, page) => {
 		try {
 			setPostsLoading(true)
 			const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
@@ -37,10 +38,9 @@ function App() {
 					_page: page,
 				}
 			})
-			console.log(response.headers['x-total-count']);
-			setTotalCount(response.headers['x-total-count'])
-			setPagination();
-			setPosts(response.data)
+			setPosts(response.data);
+			setTotalCount(response.headers['x-total-count']);
+
 		} catch(e) {
 			setError(e.message)
 		} finally {
@@ -64,8 +64,12 @@ function App() {
 	}
 
 	useEffect(() => {
-		fetchPosts()
+		fetchPosts(limit, page)
 	}, [limit, page]);
+
+	const pagesArray = useMemo(() => {
+		return getPagesArray(totalCount)
+	}, [totalCount])
 
   return (
 	<div className="App">
@@ -77,11 +81,9 @@ function App() {
 		</MyButton>
 		<hr style={{marginTop:15}} />
 		<PostFilter filter={filter} setFilter={setFilter} />
-		{postsLoading ? <h2> Please, wait for posts to load...</h2> : <PostList deletePost={deletePost} posts={sortAndSearchPosts} /> }
+		{postsLoading ? <Loader /> : (<PostList deletePost={deletePost} posts={sortAndSearchPosts} />)}
+		<Pagination page={page} setPage={setPage} pagesArray={pagesArray} /> 
 		{error ? <h2> {error}</h2> : "" }
-		<div className="pagination">
-			{arrayPages.map( (page,index) => <MyButton> {index+1} </MyButton>)}
-		</div>
 	</div>
 )
 }

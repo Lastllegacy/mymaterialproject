@@ -1,0 +1,27 @@
+.my-loader {
+   display: block;
+   width: 150px;
+   height: 150px;
+   border: 2px dashed orange;
+   border-radius: 50%;
+   animation: 1.5s loader infinite ease-in-out ;
+}
+
+.my-loader-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+@keyframes loader {
+   from {
+      width: 75px;
+      height: 75px;
+      rotate: 360deg;
+   }
+   to {
+      width: 250px;
+      height: 250px;
+      rotate: 360deg;
+   }
+}

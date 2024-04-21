@@ -1,0 +1,10 @@
+.pagination {
+   display: flex;
+   gap: 5px;
+   margin-top: 5px;
+ }
+
+.current-page {
+   font-weight: 900;
+   color: orange;
+}
