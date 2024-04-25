@@ -5,12 +5,15 @@
  
  .post-item-enter {
    opacity: 0;
-   margin-left: -50px;
+   margin-left: 150px;
+   margin-right: -150px;
+   transition: all 400ms ease-in-out;
  }
  .post-item-enter-active {
    opacity: 1;
    margin-left: 0px;
-   transition: all 500ms ease-in-out;
+   margin-right: 0px;
+   transition: all 400ms ease-in-out;
  }
  .post-item-exit {
    opacity: 1;
